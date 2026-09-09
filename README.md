@@ -1,1 +1,1 @@
-Astrocade arcade, DNA projects and maybe a few other things
+Astrocade arcade games, DNA projects, other things
