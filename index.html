@@ -29,6 +29,16 @@
 
     <img src="images/dna.png" alt="Astrocade DNA">
 
+<script>
+        // Listen for mouse clicks or monitor taps anywhere on the document
+        document.addEventListener('click', function (event) {
+            // event.detail automatically tracks consecutive rapid clicks (3 = triple click)
+            if (event.detail === 3) {
+                window.location.href = 'wizards-run.html';
+            }
+        });
+    </script>
 </body>
 </html>
+
 
