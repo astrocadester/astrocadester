@@ -1,6 +1,6 @@
 # Dave Nutting Associates game-development lineage
 
-[Dave Nutting Associates (DNA)](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/) made some of the best arcade and console games of the bronze and golden ages, from Gun Fight and Sea Wolf to Gorf and Wizard of Wor. 
+[Dave Nutting Associates (DNA)](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/) made arcade and console games of the bronze and golden ages, from Gun Fight and Sea Wolf to Gorf and Wizard of Wor. 
 
 [Action Graphics](https://www.mobygames.com/company/1149/action-graphics-inc/) was a related studio formed in 1981 under Bob Ogdon. Subsequent personnel and company links include [Incredible Technologies](https://amusement.itsgames.com/about/), Ogdon Micro Design, Mammoth Micro Productions and MacroMind.
 
