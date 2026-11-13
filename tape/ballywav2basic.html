@@ -14,7 +14,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bally WAV 2 BASIC Player - v20261112-0005</title>
+  <title>Bally WAV 2 BASIC Player - v20261112-0006</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -1830,8 +1830,17 @@
     .workspace-panel.awaiting-source .editor-footer { display: none; }
     .workspace-panel.awaiting-source .editor-shell.empty .drop-hint {
       inset: 0; border: 0; border-radius: 0; background: #070b10;
-      color: #91a7b9; font-size: 17px; pointer-events: none;
+      color: #91a7b9; font-size: 17px; pointer-events: auto;
+      cursor: pointer;
     }
+    .workspace-panel.awaiting-source .editor-shell.empty .drop-hint:hover,
+    .workspace-panel.awaiting-source .editor-shell.empty .drop-hint:focus-visible {
+      color: #dce7f2;
+      background: #0b131c;
+      outline: 1px solid #6f8194;
+      outline-offset: -2px;
+    }
+    .workspace-panel .editor-tab.dragging .drop-hint { pointer-events: none; }
     .decode-results .decode-result-grid { margin-top: 2px; }
     #decodeResultsTitle { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
     #decodeResultsDialog .dialog-head { gap: 12px; }
@@ -2089,7 +2098,7 @@
     #closeConsoleBtn[hidden]{display:none!important}
     @media(max-width:650px){.tape-subtab{font-size:11px;padding:9px 7px}.viewer-panel.play-focus{inset:3px!important;height:calc(100dvh - 6px)!important}}
 
-    /* v20261112-0005: settings and factual image inspection */
+    /* v20261112-0006: settings and factual image inspection */
     .execution-grid {grid-template-columns:minmax(190px,360px)!important;}
     .image-map-totals{font:12px var(--mono);color:#9eabbc;margin:10px 0 18px;}
     .settings-grid.execution-grid label{max-width:360px}
@@ -2128,7 +2137,7 @@
     .knob-control output {display:inline-block;width:24px;min-width:24px;font:11px/1 var(--mono);font-variant-numeric:tabular-nums;text-align:right;color:#dce8f4;}
     .decode-results .button-row {margin-top:8px;}
     .decode-results .button-row .results-ok {margin-left:auto;}
-  /* v20261112-0005: compact rate selector, tools immediately after rate, status fills remaining width. */
+  /* v20261112-0006: compact rate selector, tools immediately after rate, status fills remaining width. */
   /* Keep the selector visually flat while retaining native, readable options. */
   .tool-bar .baud-select { border: 0 !important; background: #080b10 !important; color: #e6edf3 !important; color-scheme: dark; min-width: 85px !important; width: 85px !important; padding-right: 20px !important; appearance: auto !important; }
   .tool-bar .baud-select option { color: #e6edf3 !important; background: #141b25 !important; }
@@ -2205,7 +2214,7 @@
               placeholder=""></textarea>
             <div class="copy-toast" id="copyToast">Copied</div>
             <div class="error-line-highlight" id="errorLineHighlight" aria-hidden="true"></div>
-            <div class="drop-hint">OPEN WAV / BAS / BIN</div>
+            <label class="drop-hint" for="wavInput" role="button" tabindex="0" aria-label="Drop WAV, BAS, or BIN files here, or click to choose a file">DROP WAV / BAS / BIN</label>
             <div class="editor-footer"><span id="editorLines">0 lines</span><span id="editorChars">0 characters</span></div>
           </div>
         </div>
@@ -2432,7 +2441,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           
         </div>
         <h4 class="settings-section-heading" style="text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:11px;font-weight:500">ABOUT</h4>
-        <div class="settings-about-row"><strong>Version:</strong><span id="aboutVersion">v20261112-0005</span><button class="settings-copy-button" id="copyVersionBtn" type="button" title="Copy version" aria-label="Copy version to clipboard">⧉</button></div>
+        <div class="settings-about-row"><strong>Version:</strong><span id="aboutVersion">v20261112-0006</span><button class="settings-copy-button" id="copyVersionBtn" type="button" title="Copy version" aria-label="Copy version to clipboard">⧉</button></div>
         <div class="settings-about-row"><strong>Contact:</strong><a href="mailto:astrocadester@gmail.com">astrocadester@gmail.com</a></div>
       </div>
     </section>
@@ -2445,7 +2454,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
 
   <div class="modal-backdrop" id="helpDialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
     <section class="dialog">
-      <div class="dialog-head"><h3 id="helpTitle">Bally WAV 2 BASIC Player <span class="help-version">v20261112-0005</span></h3><button class="icon-btn" data-close-dialog="helpDialog" aria-label="Close help">×</button></div>
+      <div class="dialog-head"><h3 id="helpTitle">Bally WAV 2 BASIC Player <span class="help-version">v20261112-0006</span></h3><button class="icon-btn" data-close-dialog="helpDialog" aria-label="Close help">×</button></div>
       <div class="help-tabs" role="tablist" aria-label="Help topics">
         <button class="help-tab active" data-help-tab="decoder" role="tab" aria-selected="true">WAV DECODER</button>
         <button class="help-tab" data-help-tab="player" role="tab" aria-selected="false">BASIC PLAYER</button>
@@ -2539,6 +2548,14 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     const debugLog = $('debugLog');
     const uploadCard = $('uploadCard');
     const dropZone = $('dropZone');
+    // The empty-workspace prompt is both a drop target and a file-picker label.
+    const dropHint = document.querySelector('#dropZone .drop-hint');
+    dropHint.addEventListener('keydown', event => {
+      if ((event.key === 'Enter' || event.key === ' ') && workspacePanel.classList.contains('awaiting-source')) {
+        event.preventDefault();
+        wavInput.click();
+      }
+    });
     const workspacePanel = $('workspacePanel');
     const editorDropPanel = $('work-basic');
     const waveCanvas = $('waveCanvas');
@@ -2603,7 +2620,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       }
     }
     $('copyDebugBtn').addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); refreshRuntimeDebug(); copyPlainText(debugLog.textContent, $('copyDebugBtn')); });
-    $('copyVersionBtn').addEventListener('click', () => copyPlainText('v20261112-0005', $('copyVersionBtn')));
+    $('copyVersionBtn').addEventListener('click', () => copyPlainText('v20261112-0006', $('copyVersionBtn')));
     document.addEventListener('pointerdown', event => {
       if (!$('toolbarStatus').contains(event.target)) $('toolbarStatus').classList.remove('pinned');
     });
@@ -2691,7 +2708,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
             recovery = {kind:'basic', bytes:image, basename, source,
               programs:[{label:'Main program',source,lineCount:imageListing.lines.length}],
               followupBlocks:[], transmittedBytes:null,
-              map:{format:'ballywav2basic-recovery-v1',version:'v20261112-0005',baud:'2000',
+              map:{format:'ballywav2basic-recovery-v1',version:'v20261112-0006',baud:'2000',
                 inputName:file.name,sourceType:'AstroBASIC-program-image',
                 classification:'AstroBASIC cassette image',decodedBytes:image.length,
                 basicLines:imageListing.lines.length,regions:[],cassetteCommands:[],startupDependencies:[]}};
@@ -2718,7 +2735,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           }
           const typicalCartridge = image.length === 4096 || image.length === 8192;
           const map = {
-            format: 'ballywav2basic-recovery-v1', version: 'v20261112-0005',
+            format: 'ballywav2basic-recovery-v1', version: 'v20261112-0006',
             inputName: file.name, sourceType: 'cartridge-file',
             classification: typicalCartridge ? 'Astrocade cartridge ROM' : 'Unclassified binary image',
             decodedBytes: image.length, basicLines: 0,
@@ -6636,7 +6653,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       const machineCalls=[...new Set(sourceLines.flatMap(line =>
         [...line.matchAll(/\bCALL\s*([A-Z]{1,2}|\d+)\b/gi)].map(m => m[1].toUpperCase())))];
       const map = {
-        format: 'ballywav2basic-recovery-v1', version:'v20261112-0005',
+        format: 'ballywav2basic-recovery-v1', version:'v20261112-0006',
         inputName:result.inputName, baud:result.mode, leaderFound:!!result.leader,
         classification: kind === 'basic' ? 'BASIC with preserved binary payload' : 'Binary / unsupported BASIC format',
         programSegments: result.recoveredPrograms?.programs.map(({id,label,firstLine,lastLine,lineCount,firstStreamRow,lastStreamRow})=>({id,label,firstLine,lastLine,lineCount,firstStreamRow,lastStreamRow})) || [],
