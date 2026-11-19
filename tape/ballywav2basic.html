@@ -14,7 +14,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bally WAV 2 BASIC Player - v20261112-0006</title>
+  <title>Bally WAV 2 BASIC Player - v20261119-0001</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -1830,17 +1830,8 @@
     .workspace-panel.awaiting-source .editor-footer { display: none; }
     .workspace-panel.awaiting-source .editor-shell.empty .drop-hint {
       inset: 0; border: 0; border-radius: 0; background: #070b10;
-      color: #91a7b9; font-size: 17px; pointer-events: auto;
-      cursor: pointer;
+      color: #91a7b9; font-size: 17px; pointer-events: none;
     }
-    .workspace-panel.awaiting-source .editor-shell.empty .drop-hint:hover,
-    .workspace-panel.awaiting-source .editor-shell.empty .drop-hint:focus-visible {
-      color: #dce7f2;
-      background: #0b131c;
-      outline: 1px solid #6f8194;
-      outline-offset: -2px;
-    }
-    .workspace-panel .editor-tab.dragging .drop-hint { pointer-events: none; }
     .decode-results .decode-result-grid { margin-top: 2px; }
     #decodeResultsTitle { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
     #decodeResultsDialog .dialog-head { gap: 12px; }
@@ -2071,7 +2062,7 @@
     @media(max-width:760px){.console-hud{grid-template-columns:1fr;}.console-controls{justify-content:flex-start;}}
 
   
-    /* compact shared tape tools and full-screen player */
+    /* v20261119-0001: compact shared tape tools and full-screen player */
     .tape-subtabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid #323b47;margin:0 0 12px;padding:0 0 5px;background:#000}
     .tape-subtab{appearance:none;background:transparent;border:0;border-bottom:2px solid transparent;color:#98a7ba;padding:10px 12px;font:600 12px inherit;cursor:pointer}
     .tape-subtab.active{color:#f2f5f8;border-bottom-color:#b4bfcc}
@@ -2098,7 +2089,7 @@
     #closeConsoleBtn[hidden]{display:none!important}
     @media(max-width:650px){.tape-subtab{font-size:11px;padding:9px 7px}.viewer-panel.play-focus{inset:3px!important;height:calc(100dvh - 6px)!important}}
 
-    /* v20261112-0006: settings and factual image inspection */
+    /* v20261119-0001: settings and factual image inspection */
     .execution-grid {grid-template-columns:minmax(190px,360px)!important;}
     .image-map-totals{font:12px var(--mono);color:#9eabbc;margin:10px 0 18px;}
     .settings-grid.execution-grid label{max-width:360px}
@@ -2108,46 +2099,6 @@
     .viewer-panel.play-focus .viewer-tab.active {width:100%;}
     .viewer-panel.play-focus{z-index:1000!important;}
     .viewer-panel.play-focus #closeConsoleBtn{border:0!important;background:transparent!important;box-shadow:none!important}
-    /* Debug copy belongs only to the selected Debug tab. */
-    .viewer-panel .tab-bar #copyDebugBtn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      align-self: center;
-      flex: 0 0 28px;
-      width: 28px;
-      height: 28px;
-      padding: 0;
-      margin: 0 3px 1px -3px;
-      border: 0;
-      border-radius: 5px;
-      background: transparent;
-      color: #aab3c0;
-      cursor: pointer;
-    }
-    .viewer-panel .tab-bar #copyDebugBtn:hover { color: #fff; background: #1a2029; }
-    .viewer-panel .tab-bar #copyDebugBtn[hidden] { display: none !important; }
-
-    /* Fixed-width rotary control: value updates never reflow player controls. */
-    .console-controls .knob-control { display:inline-flex; align-items:center; gap:4px; width:93px; min-width:93px; max-width:93px; height:43px; flex:0 0 93px; white-space:nowrap; justify-content:flex-start; }
-    .knob-caption {color:#b5c2d1;font:600 10px/1 var(--mono);}
-    .knob-dial {width:42px;height:42px;flex:0 0 42px; cursor:grab;touch-action:none;border-radius:50%;outline-offset:1px;}
-    .knob-dial:active {cursor:grabbing;}
-    .knob-dial:focus-visible {outline:2px solid #a8b6c6;}
-    .knob-control output {display:inline-block;width:24px;min-width:24px;font:11px/1 var(--mono);font-variant-numeric:tabular-nums;text-align:right;color:#dce8f4;}
-    .decode-results .button-row {margin-top:8px;}
-    .decode-results .button-row .results-ok {margin-left:auto;}
-  /* v20261112-0006: compact rate selector, tools immediately after rate, status fills remaining width. */
-  /* Keep the selector visually flat while retaining native, readable options. */
-  .tool-bar .baud-select { border: 0 !important; background: #080b10 !important; color: #e6edf3 !important; color-scheme: dark; min-width: 85px !important; width: 85px !important; padding-right: 20px !important; appearance: auto !important; }
-  .tool-bar .baud-select option { color: #e6edf3 !important; background: #141b25 !important; }
-  .tool-bar .baud-select:focus-visible { outline: 1px solid #a8b6c6; outline-offset: 1px; }
-  .tool-bar .help-tools { margin-left: 0 !important; flex: 0 0 auto; }
-  .tool-bar .toolbar-status { flex: 1 1 0 !important; min-width: 80px; max-width: none !important; }
-  @media (max-width: 680px) {
-    .tool-bar .help-tools { display: inline-flex !important; order: 1; }
-    .tool-bar .toolbar-status { order: 2; flex: 1 0 100% !important; }
-  }
 </style>
 </head>
 
@@ -2182,11 +2133,6 @@
         </select>
       </div>
 
-      <div class="tool-group no-rule help-tools">
-        <button class="icon-btn" id="helpBtn" title="Help" aria-label="Help">?</button>
-        <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
-      </div>
-
       <div class="toolbar-status" id="toolbarStatus" tabindex="0" aria-label="Current file and operation status" aria-describedby="statusTooltip">
         <span class="dot" id="statusDot"></span>
         <span id="statusText">Ready</span>
@@ -2195,6 +2141,10 @@
       </div>
 
       <div class="tool-spacer"></div>
+      <div class="tool-group no-rule help-tools">
+        <button class="icon-btn" id="helpBtn" title="Help" aria-label="Help">?</button>
+        <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
+      </div>
     </header>
 
     <main class="layout workbench-layout">
@@ -2214,7 +2164,7 @@
               placeholder=""></textarea>
             <div class="copy-toast" id="copyToast">Copied</div>
             <div class="error-line-highlight" id="errorLineHighlight" aria-hidden="true"></div>
-            <label class="drop-hint" for="wavInput" role="button" tabindex="0" aria-label="Drop WAV, BAS, or BIN files here, or click to choose a file">DROP WAV / BAS / BIN</label>
+            <div class="drop-hint">OPEN WAV / BAS / BIN</div>
             <div class="editor-footer"><span id="editorLines">0 lines</span><span id="editorChars">0 characters</span></div>
           </div>
         </div>
@@ -2333,8 +2283,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         <div class="tab-bar" role="tablist" aria-label="Player and signal views">
           <button class="tab-btn active" data-view-tab="console" role="tab" aria-selected="true">ASTROCADE</button>
           <button class="tab-btn" data-view-tab="signal" role="tab" aria-selected="false">TAPE SIGNAL</button>
+          <button class="tab-btn" data-view-tab="format" role="tab" aria-selected="false">FORMAT NOTES</button>
           <button class="tab-btn" data-view-tab="options" role="tab" aria-selected="false">DECODE OPTIONS</button>
-          <button class="tab-btn" data-view-tab="debug" role="tab" aria-selected="false">DEBUG</button><button class="inline-status-copy debug-tab-copy" id="copyDebugBtn" type="button" title="Copy debug report" aria-label="Copy debug report" hidden><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+          <button class="tab-btn" data-view-tab="debug" role="tab" aria-selected="false">DEBUG</button>
           <span class="tab-meta" id="viewerMeta">160 × 88 · P1 trigger</span><button type="button" id="closeConsoleBtn" title="Close player" aria-label="Close player" hidden>×</button>
         </div>
 
@@ -2358,12 +2309,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
                 <span>TR(1) <b id="triggerState">0</b></span>
               </div>
               <div class="console-controls">
-                <div class="knob-control" title="Player 1 analog knob: drag around dial; mouse wheel or arrow keys for fine control">
-                  <span class="knob-caption">P1</span>
-                  <div class="knob-dial" id="p1Knob" role="slider" tabindex="0" aria-label="Player 1 rotary knob" aria-valuemin="0" aria-valuemax="255" aria-valuenow="0" aria-valuetext="0 of 255">
-                    <svg viewBox="0 0 42 42" width="42" height="42" aria-hidden="true"><path d="M8 32 A17 17 0 1 1 34 32" fill="none" stroke="#3c485b" stroke-width="2.2" stroke-linecap="round"/><circle cx="21" cy="21" r="13" fill="#1c2531" stroke="#6f7d8f" stroke-width="1.2"/><g id="p1KnobPointer"><path d="M21 10 L21 17" stroke="#dce8f4" stroke-width="2.8" stroke-linecap="round"/></g><circle cx="21" cy="21" r="2" fill="#586779"/></svg>
-                  </div><output id="p1KnobValue" for="p1Knob">000</output>
-                </div>
                 <div class="joystick-controls" aria-label="P1 joystick controls"><button type="button" data-direction="up" title="P1 Up" aria-label="P1 Up">↑</button><button type="button" data-direction="left" title="P1 Left" aria-label="P1 Left">←</button><button type="button" data-direction="down" title="P1 Down" aria-label="P1 Down">↓</button><button type="button" data-direction="right" title="P1 Right" aria-label="P1 Right">→</button></div>
                 <button class="trigger-btn go-btn" id="goBtn">GO · ENTER</button>
                 <button class="trigger-btn" id="triggerBtn">TRIGGER · SPACE</button>
@@ -2407,6 +2352,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
             </div>
 
             </div>
+            <section class="tape-tool-pane" id="tape-tool-format" role="tabpanel">
+              <p class="note-copy"><b>300 baud</b> — Bally BASIC tape character stream, with program boundaries and input commands. <b>2000 baud</b> — AstroBASIC program/image records with interleaved screen data.</p>
+            </section>
             <section class="tape-tool-pane" id="tape-tool-options" role="tabpanel">
               <div class="options-grid">
                 <label class="field">Hysteresis fraction<input id="hysteresis" type="number" min="0" max="1" step="0.005" value="0.06" /></label>
@@ -2419,7 +2367,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
               <div class="button-row"><button class="btn small" id="applyOptions" disabled>Decode with options</button></div>
             </section>
             <section class="tape-tool-pane" id="tape-tool-debug" role="tabpanel">
-
+              <div class="debug-title">Debug / paste-back report <button class="icon-btn" id="copyDebugBtn" type="button" title="Copy debug / paste-back report" aria-label="Copy debug / paste-back report"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button></div>
               <pre class="debug-log" id="debugLog">No decode yet.</pre>
             </section>
           </div>
@@ -2432,6 +2380,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     <section class="dialog">
       <div class="dialog-head"><h3 id="settingsTitle">Settings</h3><button class="icon-btn" data-close-dialog="settingsDialog" aria-label="Close settings">×</button></div>
       <div class="dialog-body">
+        <div class="settings-grid settings-load"><label>BASIC tape load
+            <select id="loadMode"><option value="replace" selected>Replace current program</option><option value="merge">Merge/patch by line number</option></select>
+          </label></div>
         <label class="check"><input id="soundEnabled" type="checkbox" checked /> Enable Astrocade sound-port synthesis</label>
         <label class="check"><input id="scanlinesEnabled" type="checkbox" checked /> Show subtle CRT scanlines</label>
         <label class="check"><input id="clearOnRun" type="checkbox" checked /> Reset variables and display when Run is pressed</label>
@@ -2441,7 +2392,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           
         </div>
         <h4 class="settings-section-heading" style="text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:11px;font-weight:500">ABOUT</h4>
-        <div class="settings-about-row"><strong>Version:</strong><span id="aboutVersion">v20261112-0006</span><button class="settings-copy-button" id="copyVersionBtn" type="button" title="Copy version" aria-label="Copy version to clipboard">⧉</button></div>
+        <div class="settings-about-row"><strong>Version:</strong><span id="aboutVersion">v20261119-0001</span><button class="settings-copy-button" id="copyVersionBtn" type="button" title="Copy version" aria-label="Copy version to clipboard">⧉</button></div>
         <div class="settings-about-row"><strong>Contact:</strong><a href="mailto:astrocadester@gmail.com">astrocadester@gmail.com</a></div>
       </div>
     </section>
@@ -2449,12 +2400,12 @@ are connected to the browser display, controls and audio synthesizer.</pre>
 
   <div class="modal-backdrop" id="decodeResultsDialog" role="dialog" aria-modal="true" aria-labelledby="decodeResultsTitle">
     <section class="dialog"><div class="dialog-head"><h3 id="decodeResultsTitle">Decode results</h3><button class="icon-btn results-close" data-close-dialog="decodeResultsDialog" aria-label="Close results">×</button></div>
-      <div class="dialog-body"><div id="decodeResultsBody" class="decode-results"></div><div class="button-row" style="justify-content:space-between"><button class="btn results-save" id="resultsDownloadBtn" type="button" title="Download recovery ZIP" aria-label="Download recovery ZIP"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h13l3 3v15H4z"/><path d="M7 3v7h10V3M7 21v-8h10v8"/><path d="M10 6h4"/></svg></button><button class="btn results-ok" id="resultsOkBtn" type="button">OK</button></div></div></section>
+      <div class="dialog-body"><div id="decodeResultsBody" class="decode-results"></div><div class="button-row" style="justify-content:flex-end"><button class="btn results-save" id="resultsDownloadBtn" type="button" title="Download recovery ZIP" aria-label="Download recovery ZIP"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h13l3 3v15H4z"/><path d="M7 3v7h10V3M7 21v-8h10v8"/><path d="M10 6h4"/></svg></button><button class="btn results-ok" id="resultsOkBtn" type="button">OK</button></div></div></section>
   </div>
 
   <div class="modal-backdrop" id="helpDialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
     <section class="dialog">
-      <div class="dialog-head"><h3 id="helpTitle">Bally WAV 2 BASIC Player <span class="help-version">v20261112-0006</span></h3><button class="icon-btn" data-close-dialog="helpDialog" aria-label="Close help">×</button></div>
+      <div class="dialog-head"><h3 id="helpTitle">Bally WAV 2 BASIC Player <span class="help-version">v20261119-0001</span></h3><button class="icon-btn" data-close-dialog="helpDialog" aria-label="Close help">×</button></div>
       <div class="help-tabs" role="tablist" aria-label="Help topics">
         <button class="help-tab active" data-help-tab="decoder" role="tab" aria-selected="true">WAV DECODER</button>
         <button class="help-tab" data-help-tab="player" role="tab" aria-selected="false">BASIC PLAYER</button>
@@ -2462,12 +2413,12 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       <div class="dialog-body help-pane active" id="help-decoder" role="tabpanel">
         <h4>Decode a cassette</h4>
         <ol class="help-list"><li>Upload or drop a WAV. The previous session is cleared and a results summary opens.</li><li>Leave the rate on <b>Auto</b> first; force <b>300</b> or <b>2000</b> if detection chooses poorly.</li><li>For 300-baud tapes containing multiple BASIC programs, select the playable program above the editor. Tape Signal contains the waveform and decoder details.</li></ol>
-        <h4>Cassette formats</h4><p><b>300 baud</b> — Bally BASIC cassette character streams, including consecutive programs and direct tape commands. <b>2000 baud</b> — AstroBASIC program images, saved data and additional cassette blocks. The transmitted word ordering and reconstructed memory representation are distinct.</p>
         <h4>Getting a clean decode</h4>
         <ul class="help-list"><li>Use an uncompressed mono or stereo PCM WAV; the decoder mixes stereo to mono.</li><li>A complete, steady leader is important. Avoid clipped beginnings and aggressive noise reduction.</li><li>If Auto fails, try the known tape rate, then Invert signal or disable Schmitt cleanup in Settings.</li><li>Manual cycle split and start cycle are recovery tools for noisy or nonstandard recordings.</li></ul>
         <h4>ROM execution</h4><p>The supplied Astrocade system ROM and AstroBASIC cartridge ROM are embedded in this standalone player. Recovered cassette machine code executes through the original ROM at its normal addresses, sharing memory and sound ports with BASIC.</p>
         <h4>Recovered files</h4>
         <p>BASIC recordings open in the editor. BASIC recordings with saved data also offer Data and Memory Map tabs. BIN/ROM cartridge images open Disassembly, Data and Memory Map for inspection; the BASIC Run button is unavailable for these files. Download saves a ZIP containing the recovered files and the exact decoded payload. Unknown load addresses are reported as unknown.</p>
+        <p><b>Patch and modification tapes:</b> load the base program with <b>Replace</b>, choose <b>Merge/patch by line number</b> in Settings, then load the modification tape. Matching line numbers are replaced, new lines are added, and a bare line number deletes that base line.</p>
       </div>
       <div class="dialog-body help-pane" id="help-player" role="tabpanel" hidden>
         <h4>Run and control</h4>
@@ -2548,14 +2499,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     const debugLog = $('debugLog');
     const uploadCard = $('uploadCard');
     const dropZone = $('dropZone');
-    // The empty-workspace prompt is both a drop target and a file-picker label.
-    const dropHint = document.querySelector('#dropZone .drop-hint');
-    dropHint.addEventListener('keydown', event => {
-      if ((event.key === 'Enter' || event.key === ' ') && workspacePanel.classList.contains('awaiting-source')) {
-        event.preventDefault();
-        wavInput.click();
-      }
-    });
     const workspacePanel = $('workspacePanel');
     const editorDropPanel = $('work-basic');
     const waveCanvas = $('waveCanvas');
@@ -2619,11 +2562,8 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         setTimeout(() => { feedback.title = oldTitle; }, 1200);
       }
     }
-    $('copyDebugBtn').addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); refreshRuntimeDebug(); copyPlainText(debugLog.textContent, $('copyDebugBtn')); });
-    $('copyVersionBtn').addEventListener('click', () => copyPlainText('v20261112-0006', $('copyVersionBtn')));
-    document.addEventListener('pointerdown', event => {
-      if (!$('toolbarStatus').contains(event.target)) $('toolbarStatus').classList.remove('pinned');
-    });
+    $('copyDebugBtn').addEventListener('click', (event) => { event.preventDefault(); event.stopPropagation(); copyPlainText(debugLog.textContent, $('copyDebugBtn')); });
+    $('copyVersionBtn').addEventListener('click', () => copyPlainText('v20261119-0001', $('copyVersionBtn')));
     $('toolbarStatus').addEventListener('click', () => {
       $('toolbarStatus').classList.toggle('pinned');
     });
@@ -2684,9 +2624,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
 
     /** Load source directly, or decode a WAV before placing its listing in the editor. */
     async function loadFile(file) {
-      $('toolbarStatus').classList.remove('pinned');
-      clearErrorHighlight();
-      document.querySelectorAll('.modal-backdrop.open').forEach(dialog => closeDialog(dialog.id));
       setStatus('work', `Reading ${file.name}...`);
       try {
         // Cartridge files are binary images, never text BASIC. A false BASIC
@@ -2699,43 +2636,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           lastFile = null; lastArrayBuffer = null; lastResult = null;
           const stem = file.name.replace(/\.(bin|rom)$/i, '');
           const basename = stem.replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,90) || 'cartridge';
-          // Exported -load.bin is a cassette BASIC image, not a cartridge ROM.
-          // Recognize it from actual numbered records; never apply to 4/8 KiB ROMs.
-          const imageListing = parseAstroBasicProgramImage(Array.from(image));
-          if (imageListing.lines.length >= 3 && ![4096,8192].includes(image.length)) {
-            const source = imageListing.lines.map(line => `${line.number} ${line.text}`).join('\n');
-            const basename = stem.replace(/[^a-zA-Z0-9._-]+/g,'-').slice(0,90) || 'cassette-image';
-            recovery = {kind:'basic', bytes:image, basename, source,
-              programs:[{label:'Main program',source,lineCount:imageListing.lines.length}],
-              followupBlocks:[], transmittedBytes:null,
-              map:{format:'ballywav2basic-recovery-v1',version:'v20261112-0006',baud:'2000',
-                inputName:file.name,sourceType:'AstroBASIC-program-image',
-                classification:'AstroBASIC cassette image',decodedBytes:image.length,
-                basicLines:imageListing.lines.length,regions:[],cassetteCommands:[],startupDependencies:[]}};
-            basicOutput.value=source;
-            workspacePanel.classList.remove('awaiting-source');
-            sourceHeightOverridden=false;syncSourceHeight(true);
-            configureContentTabs('basic');
-            selectWorkTab('basic');selectViewTab('tape');
-            fileName.textContent=file.name;
-            $('resetBtn').disabled=false;copyBtn.disabled=false;
-            updateEditorMetrics();updateRunAvailability();
-            setStatus('good',`BASIC · ${imageListing.lines.length} lines (cassette image; additional tape blocks require original WAV).`);
-            const grid=document.createElement('div');grid.className='decode-result-grid';
-            for(const [label,value] of [['Content','AstroBASIC cassette image'],['BASIC lines',String(imageListing.lines.length)],['Bytes',image.length.toLocaleString()],['Additional loads','Original WAV required']]) {
-              const cell=document.createElement('div');cell.className='decode-result-cell';
-              const small=document.createElement('small');small.textContent=label;
-              const strong=document.createElement('strong');strong.textContent=value;
-              cell.append(small,strong);grid.append(cell);
-            }
-            $('decodeResultsTitle').textContent=file.name;
-            $('decodeResultsBody').replaceChildren(grid);
-            openDialog('decodeResultsDialog');
-            return;
-          }
           const typicalCartridge = image.length === 4096 || image.length === 8192;
           const map = {
-            format: 'ballywav2basic-recovery-v1', version: 'v20261112-0006',
+            format: 'ballywav2basic-recovery-v1', version: 'v20261119-0001',
             inputName: file.name, sourceType: 'cartridge-file',
             classification: typicalCartridge ? 'Astrocade cartridge ROM' : 'Unclassified binary image',
             decodedBytes: image.length, basicLines: 0,
@@ -2786,7 +2689,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
             : await file.text();
           workspacePanel.classList.remove('awaiting-source');
           sourceHeightOverridden = false; syncSourceHeight(true);
-          basicOutput.value = incomingSource;
+          basicOutput.value = $('loadMode').value === 'merge' ? mergeBasicSources(priorSource, incomingSource) : incomingSource;
           lastFile = null;
           lastArrayBuffer = null;
           lastResult = null;
@@ -2798,7 +2701,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           $('resetBtn').disabled = false;
           updateEditorMetrics();
           selectWorkTab('basic');
-          setStatus('good', `Loaded BASIC file: ${file.name} (no WAV decode)`);
+          setStatus('good', `${$('loadMode').value === 'merge' ? 'Merged' : 'Loaded'} BASIC file: ${file.name} (no WAV decode)`);
           return;
         }
         // A new cassette always starts a clean session, including console and diagnostics.
@@ -2859,8 +2762,8 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         recovery = buildRecovery(result);
         basicRuntime.attachCassettePayload(recovery.bytes);
         fileName.textContent = file.name;
-        const merged = false;
-        basicOutput.value = result.cleanBasic;
+        const merged = $('loadMode').value === 'merge';
+        basicOutput.value = merged ? mergeBasicSources(priorSource, result.cleanBasic) : result.cleanBasic;
         const programSelect=$('programSelect');
         programSelect.replaceChildren();
         if (recovery.programs.length>1) {
@@ -2869,10 +2772,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           programSelect.hidden=true;
           const host=$('programTabs');host.replaceChildren();host.hidden=false;
           recovery.programs.forEach((program,i)=>{
-            if (program.label === 'Main program') return; // BASIC is the main program; only show genuinely additional programs
             const tab=document.createElement('button');tab.type='button';tab.className='tab-btn program-tab';
-            tab.textContent=program===recovery.programs.find(p=>p.label==='Main program')?'MAIN':program.label.toUpperCase();
-            tab.title=`${program.lineCount} BASIC lines`;
+            tab.textContent=program.label==='Main program'?'MAIN':program.label.toUpperCase();
+            tab.title=`${program.lineCount} recovered BASIC lines`;
             tab.dataset.program=String(i);
             tab.addEventListener('click',()=>{
               $('programSelect').value=String(i);
@@ -2899,11 +2801,11 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         if (result.leader) {
           const followupNote=result.followupBlocks?.length ? ` · ${result.followupBlocks.length+1} cassette blocks` : '';
           if (result.parser.lines.length) {
-            setStatus('good', `${result.modeLabel} · ${result.parser.lines.length} BASIC lines${followupNote}`);
+            setStatus('good', `${result.modeLabel}: decoded ${result.dec.stats.bytes} bytes into ${result.parser.lines.length} BASIC lines${followupNote}${merged ? ' and merged them by line number' : ''}.`);
           } else if (result.mode === '2000') {
-            setStatus('work', `${result.modeLabel}: ${result.dec.stats.bytes} binary bytes.`);
+            setStatus('work', `${result.modeLabel}: recovered ${result.dec.stats.bytes} binary bytes; no verified BASIC listing.`);
           } else {
-            setStatus('good', `${result.modeLabel} · ${result.dec.stats.bytes} bytes`);
+            setStatus('good', `${result.modeLabel}: decoded ${result.dec.stats.bytes} bytes.`);
           }
         } else {
           setStatus('bad', `${result.modeLabel}: no leader found. Try a forced baud mode, invert, no-Schmitt, or a manual cycle split.`);
@@ -3072,14 +2974,13 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         try {
           const decoder=new BallyBin2000Decoder(samples.subarray(pos),sampleRate,opts);
           const decoded=decoder.decodeLoad();
-          if(!decoded.leader || !decoded.loadBytes.length || !decoded.checksum) break;
+          if(decoded.loadBytes.length < 8) break;
           const transmitted=recoverTransportMemoryBytes(decoded);
           const duration=decoder.pos;
           blocks.push({startSample:pos,endSample:pos+duration,
             decodedBytes:Uint8Array.from(decoded.loadBytes),
             transmittedBytes:transmitted ? transmitted.slice(0,decoded.loadBytes.length) : null,
-            wordPairs:decoded.pairs.length,footerHeader:decoded.footerHeader,
-            checksum:decoded.checksum});
+            wordPairs:decoded.pairs.length,footerHeader:decoded.footerHeader});
           pos+=duration;
         } catch(error) { break; }
       }
@@ -3144,7 +3045,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           const h1 = this.getByteHeader();
           if (h1 === null) break;
           this.headerCount++;
-          if (h1 === 3) { footerHeader = h1; byteCount = firstHalf.length * 2 - 1; break; }
+          if (h1 === 3) { footerHeader = h1; byteCount = firstHalf.length * 2; break; }
           const inByteOne = this.getNextByte();
           if (inByteOne === null) break;
           const h2 = this.getByteHeader();
@@ -3156,41 +3057,12 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           firstHalf.push(outByteOne);
           secondHalf.push(outByteTwo);
           pairs.push({ h1, inByteOne, h2, inByteTwo, outByteOne, outByteTwo });
-          if (h2 === 3) { footerHeader = h2; byteCount = firstHalf.length * 2 - 2; break; }
+          if (h2 === 3) { footerHeader = h2; byteCount = firstHalf.length * 2 - 1; break; }
         }
         if (!byteCount) byteCount = firstHalf.length * 2;
-        // BallyBin 2: the trailing encoded byte is a checksum, not payload.
-        // Footer on the first header (h1=3): previous pair's second byte is
-        // the checksum. Footer on the second header (h2=3): current pair's
-        // first byte is the checksum; its second byte is footer filler.
-        // The logical load occupies first-plane bytes then second-plane bytes.
-        // Never include either checksum or filler in recovered program memory.
-        let payloadFirst = firstHalf, payloadSecond = secondHalf;
-        let checksum = null;
-        if (footerHeader === 3 && pairs.length) {
-          const last = pairs[pairs.length - 1];
-          const footerInSecondHeader = last.h2 === 3;
-          const transmitted = [];
-          for (const p of pairs) transmitted.push(p.inByteOne, p.inByteTwo);
-          const checksumEncoded = footerInSecondHeader ? last.inByteOne : last.inByteTwo;
-          const payloadEncoded = transmitted.slice(0, footerInSecondHeader ? -2 : -1);
-          let sum = 0xa5;
-          for (const b of payloadEncoded) sum = (sum + reverseCassetteByte(b)) & 255;
-          const observed = reverseCassetteByte(checksumEncoded);
-          checksum = { valid: ((sum + observed) & 255) === 255,
-            calculated: (255 - sum) & 255, observed,
-            payloadEncodedBytes: payloadEncoded.length,
-            footerPosition: footerInSecondHeader ? 'second-header' : 'first-header' };
-          if (footerInSecondHeader) {
-            payloadFirst = firstHalf.slice(0, -1);
-            payloadSecond = secondHalf.slice(0, -1);
-          } else {
-            payloadSecond = secondHalf.slice(0, -1);
-          }
-        }
-        const loadBytes = payloadFirst.concat(payloadSecond).slice(0, Math.max(0, byteCount));
+        const loadBytes = firstHalf.concat(secondHalf).slice(0, byteCount);
         this.stats.bytes = loadBytes.length;
-        return { loadBytes, firstHalf, secondHalf, pairs, footerHeader, checksum, leader: this.leader, syncByte: this.syncByte, zeroBitLength: this.zeroBitLength, oneBitLength: this.oneBitLength, midPoint: this.midPoint };
+        return { loadBytes, firstHalf, secondHalf, pairs, footerHeader, leader: this.leader, syncByte: this.syncByte, zeroBitLength: this.zeroBitLength, oneBitLength: this.oneBitLength, midPoint: this.midPoint };
       }
       syncWav() {
         const n = this.samples.length;
@@ -3309,15 +3181,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         }
         return v;
       }
-    }
-
-    /** BallyBin 2 sums bit-reversed transmitted bytes, starting at $A5. */
-    function reverseCassetteByte(byte) {
-      let reversed = 0;
-      for (let bit = 0; bit < 8; bit++) {
-        reversed = (reversed << 1) | ((byte >> bit) & 1);
-      }
-      return reversed;
     }
 
     /** Undo BallyBin's bit interleave and reconstruct one loaded 16-bit word. */
@@ -3956,8 +3819,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         eofBytes: dec.stats.eofBytes,
         falseStartOnes: dec.stats.falseStartOnes,
         rawBytesFedToParser: parser.raw.length,
-        cassetteChecksum: result.mode === '2000' ? (parser.decoded?.checksum || null) : null,
-        followupChecksums: result.mode === '2000' ? (result.followupBlocks || []).map((b,i)=>({load:i+2,checksum:b.checksum})) : [],
         filteredBufferBytes: parser.buffer.length,
         lines: parser.lines.length,
         ignoredBytes: parser.ignoredBytes,
@@ -3995,14 +3856,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         lines.push('2000-BAUD DECODE DETAIL:');
         lines.push('  Decoder=BallyBin-compatible reader: 7-sample zero, 14-sample one, $A5 sync, 2-bit headers, convertWord deinterleave.');
         lines.push(`  Decoded load bytes=${raw.length}`);
-        if (parser.decoded?.checksum) {
-          const cs=parser.decoded.checksum;
-          lines.push(`  Cassette checksum=${cs.valid?'PASS':'FAIL'} calculated=${hex4(cs.calculated)} observed=${hex4(cs.observed)} footer=${cs.footerPosition}`);
-        }
-        for(const [index,block] of (result.followupBlocks||[]).entries()) {
-          const cs=block.checksum;
-          lines.push(`  Follow-up load ${index+2}: ${block.decodedBytes.length} bytes; checksum=${cs?(cs.valid?'PASS':'FAIL'):'unknown'}; footer=${cs?.footerPosition||'unknown'}`);
-        }
         if (leader) lines.push(`  Leader/sync=${leader.timeSec.toFixed(4)}s - ${leader.endTimeSec.toFixed(4)}s`);
         if (listing && listing.lines && listing.lines.length) {
           lines.push(`  BASIC lines=${listing.lines.length}`);
@@ -4034,8 +3887,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         }
       }
 
-      decoderDebugText = lines.join('\n');
-      debugLog.textContent = decoderDebugText;
+      debugLog.textContent = lines.join('\n');
     }
 
     /** Redraw every tape diagnostic from a single immutable decode result. */
@@ -4679,24 +4531,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           if (i < text.length) i++;
           continue;
         }
-        if ((text[i] === '@' || text[i] === '%' || text[i] === '*') && text.slice(i + 1).match(/^\s*\(/)) {
-          const kind = text[i++];
-          while (/\s/.test(text[i] || '') && i < text.length) i++;
-          i++; // opening parenthesis
-          const begin = i;
-          let depth = 1;
-          while (i < text.length && depth) {
-            if (text[i] === '(') depth++;
-            if (text[i] === ')') depth--;
-            i++;
-          }
-          if (depth) throw new Error('WHAT? Unterminated INPUT array destination');
-          const expr = text.slice(begin, i - 1).trim();
-          if (!expr) throw new Error('WHAT? Empty INPUT array index');
-          parseExpressionAst(expr); // Reject malformed index before prompting.
-          variables.push({kind, expr});
-          continue;
-        }
         if (/[A-Za-z]/.test(text[i])) {
           const start = i++;
           while (i < text.length && /[A-Za-z]/.test(text[i])) i++;
@@ -4826,10 +4660,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         this.rasterDisplay = null;
         this.keyQueue = [];
         this.ops = 0;
-        this.executionTrace = [];
-        this.traceCounts = new Map();
-        this.traceLastLine = null;
-        this.machineTrace = [];
         this.dirty = true;
         this.randomState = 1982;
         this.resetMachine();
@@ -4906,28 +4736,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         return true;
       }
 
-      /** An AstroBASIC saved image can place @() array words immediately after
-       * its numbered BASIC records and two-byte 00 FF end marker. The words are
-       * little-endian and must be preserved as signed 16-bit array values.
-       * The cassette's BASIC source is separate from the saved array image.
-       */
-      restoreSavedAtArray(imageBytes, listing) {
-        if (!imageBytes || !listing || !listing.lines?.length) return null;
-        const offset=listing.endOffset;
-        if (!Number.isInteger(offset) || offset<0 || offset+3>=imageBytes.length ||
-            imageBytes[offset]!==0 || imageBytes[offset+1]!==0xff) return null;
-        const dataStart=offset+2;
-        const count=Math.min(1024,Math.floor((imageBytes.length-dataStart)/2));
-        if (!count) return null;
-        for(let i=0;i<count;i++) {
-          const lo=imageBytes[dataStart+i*2], hi=imageBytes[dataStart+i*2+1];
-          this.atArray.set(i,word16(lo | (hi << 8)));
-        }
-        this.savedArrayLoad={sourceOffset:dataStart,wordCount:count,firstWord:this.atArray.get(0)};
-        this.trace(`AstroBASIC saved @() array: ${count} words at cassette offset $${dataStart.toString(16).toUpperCase()}; first word=${this.atArray.get(0)}`);
-        return this.savedArrayLoad;
-      }
-
       /** Compile numbered source lines into executable statement lists. */
       compile(source, resetState = true) {
         const byNumber = new Map();
@@ -4959,7 +4767,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         this.currentLineNumber = this.lines[0].number;
         this.ops = 0;
         this.machineCalls.clear();
-        this.executionTrace=[]; this.traceCounts=new Map(); this.traceLastLine=null; this.machineTrace=[];
         this.updateHud();
         return this.lines.length;
       }
@@ -4996,7 +4803,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         this.cassetteLoad = null;
         this.atArray = new Map();
         this.starArray = new Map();
-        this.savedArrayLoad = null;
         // Keep the decoded transport payload intact; it is not an address map.
         // A cassette loader must supply validated address ranges before applying it.
         this.cassettePayload = this.cassettePayload || null;
@@ -5055,29 +4861,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         return { line: pc.line + 1, stmt: 0 };
       }
 
-      trace(message) {
-        const entry=`#${this.ops} ${message}`;
-        this.executionTrace.push(entry);
-        if(this.executionTrace.length>240) this.executionTrace.shift();
-      }
-
-      executionReport() {
-        const vars=['R','V','M','NT','L','S','G','A','B','C','D','FC','BC','CX','CY'];
-        const counts=Array.from(this.traceCounts.entries()).sort((a,b)=>b[1]-a[1]).slice(0,20);
-        const hex=a=>'$'+(a&65535).toString(16).toUpperCase().padStart(4,'0');
-        const loaded=this.cassetteLoad ? `${hex(this.cassetteLoad.address)} + ${this.cassetteLoad.length} bytes` : 'not mapped';
-        return [
-          `State: ${this.state}; line: ${this.currentLineNumber??'-'}; statements: ${this.ops}`,
-          `ROM mapped: $0000-$2FFF (${ASTROCADE_ROM_BYTES.length} bytes); last cassette RAM load: ${loaded}`,
-          `BASIC variables: ${vars.map(name=>name+'='+this.readVar(name)).join('  ')}`,
-          `Most visited BASIC lines: ${counts.map(([line,count])=>line+':'+count).join(', ')||'none'}`,
-          `Player selection: P1 knob=${this.input.knob&255}; &(28)=${this.readArray('&',28)}; P=${this.readVar('P')}; TR(1)=${this.input.trigger}; GO=${this.input.go}; line 20203 visits=${this.traceCounts.get(20203)||0}; line 20205 visits=${this.traceCounts.get(20205)||0}`,
-          'Recent BASIC execution (latest first):',
-          ...this.executionTrace.slice().reverse(),
-          ...(this.machineTrace.length?['Recent Z80: ',...this.machineTrace.slice().reverse()]:[])
-        ].join('\n');
-      }
-
       /** Execute one statement and leave the next program counter ready. */
       stepOne() {
         if (!this.running || this.paused) return;
@@ -5089,18 +4872,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         this.currentLineNumber = line.number;
         this.pc = this.nextPc(this.pc);
         this.ops++;
-        this.traceCounts.set(line.number,(this.traceCounts.get(line.number)||0)+1);
-        // Hot selection loops are expected to run many times per second.
-        // Record the first iterations and power-of-two milestones instead of
-        // filling the bounded log with repeated GOTO statements.
-        const visits=this.traceCounts.get(line.number);
-        const isSelectionPoll=(line.number===20203 || line.number===20205);
-        const samplePoll=!isSelectionPoll || visits<=6 || (visits&(visits-1))===0;
-        if(samplePoll && (this.traceLastLine!==line.number || /\b(?:CALL|GOSUB|GOTO|RUN|CLEAR|INPUT)\b/i.test(stmt))) {
-          const knobNote=isSelectionPoll ? ` [P1 knob=${this.input.knob&255}, &(28)=${this.readArray('&',28)}, P=${this.readVar('P')}, visits=${visits}]` : '';
-          this.trace(`BASIC ${line.number}: ${stmt.trim().slice(0,130)}${knobNote}`);
-          this.traceLastLine=line.number;
-        }
         try {
           this.executeStatement(stmt.trim());
         } catch (error) {
@@ -5398,16 +5169,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         let depth=0;
         for(let steps=0;steps<maxSteps;steps++) {
           const pc=cpu.pc;
-          if(steps<28 || steps%4096===0) {
-            this.machineTrace.push(`Z80 #${steps} PC=$${pc.toString(16).toUpperCase().padStart(4,'0')} opcode=$${mem(pc).toString(16).toUpperCase().padStart(2,'0')} SP=$${cpu.sp.toString(16).toUpperCase().padStart(4,'0')} HL=$${getPair(2).toString(16).toUpperCase().padStart(4,'0')}`);
-            if(this.machineTrace.length>72)this.machineTrace.shift();
-          }
-          if(!this.ramPresent[pc]) {
-            const start=(address&65535);
-            const first=Array.from({length:32},(_,i)=>mem((start+i)&65535).toString(16).toUpperCase().padStart(2,'0')).join(' ');
-            const initialized=Array.from({length:Math.max(0,pc-start)},(_,i)=>this.ramPresent[(start+i)&65535]).filter(Boolean).length;
-            throw new Error(`Z80 reached unmapped RAM $${pc.toString(16).toUpperCase().padStart(4,'0')} from CALL $${start.toString(16).toUpperCase().padStart(4,'0')}; initialized bytes within walked span: ${initialized}/${Math.max(0,pc-start)}; entry bytes: ${first}`);
-          }
+          if(!this.ramPresent[pc]) throw new Error(`Z80 execution requires ROM or RAM at $${pc.toString(16).toUpperCase().padStart(4,'0')}`);
           const op=next();
           // Z80 IX/IY prefix implementation, including displacement memory and
           // registers. BIOS RST $38 uses both index registers in its prologue.
@@ -5512,15 +5274,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       /** Map safe ROM calls and recognized RAM drivers to browser-side behavior. */
       executeMachineCall(rawAddress) {
         const address = rawAddress & 0xffff;
-        this.machineTrace=[];
-        this.trace(`CALL $${address.toString(16).toUpperCase().padStart(4,'0')} present=${!!this.ramPresent[address]}`);
-        if (address === 0x4000) {
-          const arrayCount=266;
-          const atWords=Array.from({length:arrayCount},(_,i)=>this.readArray('@',i));
-          const nonzero=atWords.filter(x=>x!==0).length;
-          const filled=Array.from({length:arrayCount*2},(_,i)=>this.ramPresent[0x4000+i]).filter(Boolean).length;
-          this.trace(`LIFE pre-CALL: @ array nonzero ${nonzero}/${arrayCount} words; $4000-$4213 RAM populated ${filled}/${arrayCount*2} bytes; first 8 @ words: ${atWords.slice(0,8).join(',')}`);
-        }
         // Safe ROM entry points with direct source-level equivalents.
         if (this.installRasterDisplay(address)) return 0;
         if (this.ramPresent[address]) return this.executeZ80(address);
@@ -5797,7 +5550,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
 
       setTrigger(pressed, player = 1) {
         const suffix = player === 2 ? '2' : '';
-        if (this.input[`trigger${suffix}`] !== Number(!!pressed)) this.trace(`P${player} trigger ${pressed?'pressed':'released'}`);
         this.input[`trigger${suffix}`] = pressed ? 1 : 0;
         if (pressed) this.input[`triggerLatch${suffix}`] = 1;
         if (player === 1) {
@@ -5808,10 +5560,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
 
       setDirection(name, pressed, player = 1) {
         const key = `${name}${player === 2 ? '2' : ''}`;
-        if (key in this.input) {
-          if (this.input[key] !== Number(!!pressed)) this.trace(`P${player} ${name} ${pressed?'pressed':'released'}`);
-          this.input[key] = pressed ? 1 : 0;
-        }
+        if (key in this.input) this.input[key] = pressed ? 1 : 0;
       }
 
       updateHud() {
@@ -5954,18 +5703,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     let runtimeLastTime = performance.now();
     let runtimeBudget = 0;
 
-    function selectWorkTab(name, keepProgram = false) {
-      if (!keepProgram && name === 'basic' && recovery?.programs?.length > 1 &&
-          $('programSelect').value !== String(recovery.programs.findIndex(p => p.label === 'Main program'))) {
-        const index = recovery.programs.findIndex(p => p.label === 'Main program');
-        if (index >= 0) {
-          $('programSelect').value = String(index);
-          basicOutput.value = recovery.programs[index].source;
-          basicRuntime.unloadSource();
-          updateEditorMetrics();
-          refreshProgramTabs();
-        }
-      }
+    function selectWorkTab(name) {
       document.querySelectorAll('[data-work-tab]').forEach(button => {
         const active = button.dataset.workTab === name;
         button.classList.toggle('active', active);
@@ -5978,12 +5716,12 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         `${numberedSourceLines()} numbered lines`;
     }
 
-    // Tape Signal, Decode Options, and Debug are peer tabs.
+    // Tape Signal, Format Notes, Decode Options, and Debug are PEER tabs.
     // There is one tab strip, shared with the fullscreen Astrocade player.
     function selectViewTab(name) {
       if (name === 'tape') name = 'signal';
       const consoleMode = name === 'console';
-      const valid = ['signal', 'options', 'debug', 'console'];
+      const valid = ['signal', 'format', 'options', 'debug', 'console'];
       if (!valid.includes(name)) name = 'signal';
       document.querySelectorAll('[data-view-tab]').forEach(button => {
         const selected = button.dataset.viewTab === name;
@@ -5994,7 +5732,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       $('view-tape').classList.toggle('active', !consoleMode);
       document.querySelectorAll('.tape-tool-pane').forEach(pane =>
         pane.classList.toggle('active', pane.id === 'tape-tool-' + name));
-      $('copyDebugBtn').hidden = name !== 'debug';
       $('viewerMeta').textContent = consoleMode ? '160 × 88 · P1 trigger' :
         name === 'signal' ? 'waveform · timing · statistics' : '';
       document.querySelector('[data-view-tab="console"]').hidden = !consoleMode && !basicRuntime.running;
@@ -6010,16 +5747,24 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       requestAnimationFrame(()=>basicRuntime.render());
     }
     function closeConsoleView(){
-      if (basicRuntime.running || basicRuntime.paused) {
-        cancelBasicInput();
-        basicRuntime.stop('STOPPED');
-        $('pauseBtn').disabled=true;
-        $('stopBtn').disabled=true;
-      }
+      // Close means STOP, not hide. The animation loop runs independently of
+      // the player visibility, so terminate BASIC and silence audio first.
+      const wasExecuting = basicRuntime.running;
+      cancelBasicInput();
+      basicRuntime.stop('STOPPED');
+      runtimeBudget = 0;
+      for (const name of ['trigger','triggerLatch','trigger2','triggerLatch2',
+        'left','right','up','down','left2','right2','up2','down2',
+        'go','goLatch','keyCode','keyLatch']) basicRuntime.input[name] = 0;
+      for (const button of document.querySelectorAll('.joystick-controls button, #goBtn, #triggerBtn'))
+        button.classList.remove('pressed');
+      $('pauseBtn').disabled = true;
+      $('stopBtn').disabled = true;
       $('viewerPanel').classList.remove('play-focus');
-      $('closeConsoleBtn').hidden=true;
+      $('closeConsoleBtn').hidden = true;
       document.body.classList.remove('console-expanded');
-      selectViewTab('tape');
+      selectViewTab('signal');
+      if (wasExecuting) setStatus('', 'Player closed. BASIC execution stopped.');
     }
     $('closeConsoleBtn').addEventListener('click',closeConsoleView);
     document.addEventListener('keydown',event=>{if(event.key==='Escape' && $('viewerPanel').classList.contains('play-focus')){event.preventDefault();closeConsoleView();}});
@@ -6092,28 +5837,21 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         const count = basicRuntime.compile(basicOutput.value, resetState);
         if (recovery && recovery.bytes) {
           basicRuntime.attachCassettePayload(recovery.bytes);
-          // Restore real saved @() words from the original 2000-baud image.
-          // LIFE copies these machine-code words to $4000 with %(A)=@(B).
-          // The loader uses the actual cassette bytes; no fabricated Z80 code.
-          if(recovery.map.baud==='2000' && /@\s*\(/.test(basicOutput.value)) {
-            const saved=basicRuntime.restoreSavedAtArray(recovery.bytes,recovery.listing);
-            if(saved) recovery.map.savedArray={sourceOffset:saved.sourceOffset,words:saved.wordCount,firstWord:saved.firstWord};
-          }
           // WaveMakers cassette chain, corroborated in both Dungeons of Dracula
           // and Monkey Jump: control record :INPUT %(R), BASIC init word 20200,
           // and at least one following data burst. The known original loader
           // convention uses R=20200;RUN (The Lost Tricks, Mike Peace).
           // The original :INPUT target is the evaluated R pointer; install the
           // subsequent physical tape bytes there, not the deinterleaved text.
-          const cassetteCallsR = basicRuntime.lines.some(line => /\bGOSUB\s+R\b/i.test(line.body));
           const waveChain=recovery.map.baud==='2000' &&
-            cassetteCallsR && basicRuntime.lineMap.has(20200) &&
+            recovery.map.cassetteCommands?.some(c=>/^:INPUT\s*%\(R\)/i.test(c.text)) &&
+            basicRuntime.lineMap.has(20200) &&
             recovery.followupBlocks?.length > 0;
           if(waveChain) {
             const entry=20200;
+            basicRuntime.writeVar('R',entry);
             const block=recovery.followupBlocks[recovery.followupBlocks.length-1];
-            if(block.transmittedBytes && block.transmittedBytes.length) {
-              basicRuntime.writeVar('R',entry);
+            if(block.transmittedBytes) {
               basicRuntime.loadCassetteBlock(block.transmittedBytes,entry);
               recovery.map.waveMakersChain={
                 initialSubroutine:20200,ramTarget:'$4EE8',
@@ -6151,7 +5889,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         runtimeBudget = 0;
         runtimeLastTime = performance.now();
         basicRuntime.start();
-        refreshRuntimeDebug();
         openConsoleView();
         $('astrocadeCanvas').focus();
         $('pauseBtn').disabled = false;
@@ -6163,13 +5900,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       } catch (error) {
         renderError(error);
       }
-    }
-
-    let decoderDebugText='';
-    let runtimeDebugLastUpdate=0;
-    function refreshRuntimeDebug() {
-      const summary=basicRuntime.executionReport();
-      debugLog.textContent='EXECUTION TRACE\n'+summary+'\n\nCASSETTE DECODE\n'+(decoderDebugText||'No WAV decoded.');
     }
 
     function runtimeFrame(now) {
@@ -6187,15 +5917,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           }
         } catch (error) {
           renderError(error);
-          refreshRuntimeDebug();
-          debugLog.textContent = 'EXECUTION ERROR\n'+(error.stack||error)+'\n\n'+debugLog.textContent;
           setStatus('bad', error.message || String(error));
         }
         basicRuntime.updateHud();
-        if(now-runtimeDebugLastUpdate>600 && basicRuntime.state!=='ERROR') {
-          runtimeDebugLastUpdate=now;
-          refreshRuntimeDebug();
-        }
       }
       basicRuntime.render();
       requestAnimationFrame(runtimeFrame);
@@ -6222,18 +5946,12 @@ are connected to the browser display, controls and audio synthesizer.</pre>
 
     let pendingInputVariables = [];
     let pendingKeyInput = false;
-    function inputTargetLabel(target) {
-      return typeof target === 'string' ? target : `${target.kind}(${target.expr})`;
-    }
     function requestBasicInput(promptText, variables) {
-      pendingInputVariables = (Array.isArray(variables) ? variables : [variables]).map(target =>
-        typeof target === 'string' ? target : {...target, index: basicRuntime.evalExpression(target.expr)});
+      pendingInputVariables = Array.isArray(variables) ? variables : [variables];
       pendingKeyInput = false;
       basicRuntime.paused = true;
       basicRuntime.state = 'INPUT';
-      basicRuntime.trace(`INPUT ${promptText.trim()} target=${pendingInputVariables.map(inputTargetLabel).join(',')}`);
       basicRuntime.updateHud();
-      refreshRuntimeDebug();
       const count = pendingInputVariables.length;
       $('inputPrompt').textContent = `${promptText.trim() || 'Enter a number'}${count > 1 ? ` · ${count} VALUES` : ''}`;
       $('inputValue').value = '';
@@ -6244,7 +5962,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       $('inputForm').hidden = false;
       setTimeout(() => $('inputValue').focus(), 0);
       $('inputMessage').textContent = count > 1 ? 'SEPARATE VALUES WITH - / , OR SPACE' : '';
-      setStatus('work', `BASIC is waiting for ${pendingInputVariables.map(inputTargetLabel).join(', ')}.`);
+      setStatus('work', `BASIC is waiting for ${pendingInputVariables.join(', ')}.`);
     }
 
     function requestBasicKey() {
@@ -6314,11 +6032,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         $('inputValue').select();
         return;
       }
-      pendingInputVariables.forEach((target, index) => {
-        const value = Math.trunc(Number(values[index]));
-        if (typeof target === 'string') basicRuntime.writeVar(target, value);
-        else basicRuntime.writeArray(target.kind, target.index, value);
-      });
+      pendingInputVariables.forEach((variable, index) => basicRuntime.writeVar(variable, Math.trunc(Number(values[index]))));
       pendingInputVariables = [];
       $('inputForm').hidden = true;
       basicRuntime.paused = false;
@@ -6364,9 +6078,9 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       basicOutput.value=chosen.source;
       updateEditorMetrics();
       clearErrorHighlight();
-      selectWorkTab('basic', true);
+      selectWorkTab('basic');
       selectViewTab('console');
-      setStatus('good',`${chosen.label}: ${chosen.lineCount} BASIC lines.`);
+      setStatus('good',`${chosen.label}: ${chosen.lineCount} numbered BASIC lines.`);
     });
     $('resultsOkBtn').addEventListener('click', () => {
       closeDialog('decodeResultsDialog');
@@ -6377,15 +6091,14 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     $('pauseBtn').addEventListener('click', () => {
       if (pendingInputVariables.length || pendingKeyInput) {
         $('inputValue').focus();
-        setStatus('work', pendingKeyInput ? 'BASIC is waiting for a letter; type it or press Stop.' : `BASIC is waiting for ${pendingInputVariables.map(inputTargetLabel).join(', ')}; enter values or press Stop.`);
+        setStatus('work', pendingKeyInput ? 'BASIC is waiting for a letter; type it or press Stop.' : `BASIC is waiting for ${pendingInputVariables.join(', ')}; enter values or press Stop.`);
         return;
       }
       basicRuntime.pauseToggle();
       setStatus(basicRuntime.paused ? 'work' : 'good', basicRuntime.paused ? 'BASIC execution paused.' : 'BASIC execution resumed.');
     });
-    $('stopBtn').addEventListener('click', () => { cancelBasicInput(); basicRuntime.stop('STOPPED'); refreshRuntimeDebug(); setStatus('', 'BASIC execution stopped.'); });
+    $('stopBtn').addEventListener('click', () => { cancelBasicInput(); basicRuntime.stop('STOPPED'); setStatus('', 'BASIC execution stopped.'); });
     function resetWorkbench() {
-      $('toolbarStatus').classList.remove('pinned');
       basicRuntime.unloadSource();
       clearAll();
       recovery = null;
@@ -6402,7 +6115,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       document.querySelectorAll('.modal-backdrop.open').forEach(dialog => dialog.classList.remove('open'));
       $('goBtn').classList.remove('pressed');
       $('triggerBtn').classList.remove('pressed');
-      setKnobValue(0);
       $('copyToast').classList.remove('show');
       runtimeBudget = 0;
       $('pauseBtn').disabled = true;
@@ -6426,50 +6138,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       if ($('soundEnabled').checked && basicRuntime.running) basicAudio.update(basicRuntime.ports);
     });
     $('scanlinesEnabled').addEventListener('change', () => $('consoleStage').classList.toggle('scanlines', $('scanlinesEnabled').checked));
-    // Physical knob position maps linearly to the original 8-bit KN(1) input.
-    // Pointer angle spans -135° to +135°, with fixed geometry and fixed-width readout.
-    let knobValue = 0;
-    const knobDial = $('p1Knob');
-    const knobPointer = $('p1KnobPointer');
-    function setKnobValue(next) {
-      knobValue = Math.max(0, Math.min(255, Math.round(next)));
-      basicRuntime.input.knob = knobValue;
-      $('p1KnobValue').textContent = String(knobValue).padStart(3, '0');
-      knobDial.setAttribute('aria-valuenow', String(knobValue));
-      knobDial.setAttribute('aria-valuetext', `${knobValue} of 255`);
-      knobPointer.setAttribute('transform', `rotate(${-135 + (270 * knobValue / 255)} 21 21)`);
-    }
-    function setKnobFromPointer(event) {
-      const rect=knobDial.getBoundingClientRect();
-      const dx=event.clientX-(rect.left+rect.width/2);
-      const dy=event.clientY-(rect.top+rect.height/2);
-      // 0 is the lower-left stop; 255 is the lower-right stop.
-      let angle=Math.atan2(dx,-dy)*180/Math.PI;
-      angle=Math.max(-135, Math.min(135,angle));
-      // Avoid discontinuous wraparound when crossing the bottom of the dial.
-      if(dy>0 && Math.abs(dx)<3) angle=knobValue<128?-135:135;
-      setKnobValue((angle+135)*255/270);
-    }
-    knobDial.addEventListener('pointerdown', event=>{
-      if(event.button!==0)return;
-      event.preventDefault();knobDial.setPointerCapture(event.pointerId);
-      setKnobFromPointer(event);knobDial.focus();
-    });
-    knobDial.addEventListener('pointermove', event=>{
-      if(knobDial.hasPointerCapture(event.pointerId))setKnobFromPointer(event);
-    });
-    knobDial.addEventListener('wheel',event=>{
-      event.preventDefault();setKnobValue(knobValue+(event.deltaY<0?4:-4));
-    },{passive:false});
-    knobDial.addEventListener('keydown',event=>{
-      const step=event.shiftKey?8:1;
-      if(event.key==='ArrowRight'||event.key==='ArrowUp')setKnobValue(knobValue+step);
-      else if(event.key==='ArrowLeft'||event.key==='ArrowDown')setKnobValue(knobValue-step);
-      else if(event.key==='Home')setKnobValue(0);
-      else if(event.key==='End')setKnobValue(255);
-      else return;
-      event.preventDefault();event.stopPropagation();
-    });
 
     for (const button of document.querySelectorAll('[data-direction]')) {
       const dir=button.dataset.direction;
@@ -6500,13 +6168,10 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     const keyDirection = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down' };
     const keyDirection2 = { a: 'left', d: 'right', w: 'up', s: 'down' };
     window.addEventListener('keydown', event => {
-      if (event.target === knobDial) return;
       if (event.key === 'Escape') {
         document.querySelectorAll('.modal-backdrop.open').forEach(dialog => closeDialog(dialog.id));
-        $('toolbarStatus').classList.remove('pinned');
         return;
       }
-      if (pendingInputVariables.length && event.target === $('inputValue')) return;
       if (pendingKeyInput && event.key === 'Enter') {
         event.preventDefault();
         setGo(true);
@@ -6536,7 +6201,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       if (keyDirection2[event.key.toLowerCase()]) { event.preventDefault(); basicRuntime.setDirection(keyDirection2[event.key.toLowerCase()], true, 2); }
     }, true);
     window.addEventListener('keyup', event => {
-      if (event.target === knobDial) return;
       if (event.code === 'Space') setTrigger(false);
       if (event.code === 'KeyF') setTrigger(false, 2);
       if (event.key === 'Enter') setGo(false);
@@ -6592,12 +6256,13 @@ are connected to the browser display, controls and audio synthesizer.</pre>
     function recoverTransportMemoryBytes(decoded) {
       if (!decoded || !Array.isArray(decoded.pairs)) return null;
       const physical=[];
-      for (const pair of decoded.pairs) physical.push(pair.inByteOne & 255, pair.inByteTwo & 255);
-      // The encoded checksum is never a byte transferred into program RAM.
-      // A second-header footer also contains a trailing $FF filler byte.
-      if (decoded.checksum && decoded.checksum.footerPosition === 'second-header') physical.splice(-2);
-      else if (decoded.checksum) physical.pop();
-      return Uint8Array.from(physical);
+      for (const pair of decoded.pairs) {
+        physical.push(pair.inByteOne & 255, pair.inByteTwo & 255);
+      }
+      // The final h2=3 footer marks the last-byte boundary. The transport
+      // checksum's meaning is not inferred from the plane-converted output.
+      const expected=decoded.loadBytes.length;
+      return Uint8Array.from(physical.slice(0,expected));
     }
 
     /** Recovery keeps the exact decoded cassette payload; offsets are not CPU addresses. */
@@ -6641,7 +6306,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         firstHalfBytes: decoded2000.firstHalf.length,
         secondHalfBytes: decoded2000.secondHalf.length,
         footerHeader:decoded2000.footerHeader,
-        checksum:decoded2000.checksum,
         headerCounts:decoded2000.pairs.reduce((counts,pair) => {
           counts[pair.h1]=(counts[pair.h1]||0)+1;
           counts[pair.h2]=(counts[pair.h2]||0)+1;
@@ -6653,7 +6317,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       const machineCalls=[...new Set(sourceLines.flatMap(line =>
         [...line.matchAll(/\bCALL\s*([A-Z]{1,2}|\d+)\b/gi)].map(m => m[1].toUpperCase())))];
       const map = {
-        format: 'ballywav2basic-recovery-v1', version:'v20261112-0006',
+        format: 'ballywav2basic-recovery-v1', version:'v20261119-0001',
         inputName:result.inputName, baud:result.mode, leaderFound:!!result.leader,
         classification: kind === 'basic' ? 'BASIC with preserved binary payload' : 'Binary / unsupported BASIC format',
         programSegments: result.recoveredPrograms?.programs.map(({id,label,firstLine,lastLine,lineCount,firstStreamRow,lastStreamRow})=>({id,label,firstLine,lastLine,lineCount,firstStreamRow,lastStreamRow})) || [],
@@ -6680,7 +6344,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
           decodedBytes:block.decodedBytes.length,transmittedBytes:block.transmittedBytes?.length||0,
           startSeconds:Number((block.startSample/result.wav.fmt.sampleRate).toFixed(3)),
           endSeconds:Number((block.endSample/result.wav.fmt.sampleRate).toFixed(3)),
-          wordPairs:block.wordPairs,checksum:block.checksum})),
+          wordPairs:block.wordPairs})),
         astroBasicVariableWords:Object.fromEntries(ASTROBASIC_VAR_ADDRESS),
         startupDependencies:startup.dependencies, cassetteTransport:transport,
         basicRecords:kind === 'basic' ? (listing && listing.lines ? listing.lines.map(line => ({number:line.number, offset:line.recordOffset, length:line.recordLength})) : result.parser.lines.map(line => ({number:line.number, encoding:'300-baud character stream', text:line.text}))) : [],
@@ -6742,7 +6406,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
         destinationVerified:false,
         recommendedExport:basename+'-transport.bin'
       };
-      return { kind, bytes, listing, transmittedBytes, followupBlocks, map, basename, source:result.cleanBasic || '', rawBasicText:result.rawBasicText || '', programs:result.recoveredPrograms?.programs || [] };
+      return { kind, bytes, transmittedBytes, followupBlocks, map, basename, source:result.cleanBasic || '', rawBasicText:result.rawBasicText || '', programs:result.recoveredPrograms?.programs || [] };
     }
 
     /** Decode zero-numbered records without executing cassette I/O or guessing RAM mapping. */
@@ -6876,7 +6540,7 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       activeContentType = kind;
       updateRunAvailability();
       const binaryOnly = kind !== 'basic';
-      const savedData = !!(recovery && recovery.bytes && recovery.bytes.length);
+      const savedData = recovery && recovery.map.regions.some(r => r.type === 'unclassified-trailing-data' && r.length > 0);
       document.querySelector('[data-work-tab="basic"]').hidden = binaryOnly;
       document.querySelector('[data-work-tab="rom"]').hidden = binaryOnly;
       for (const button of document.querySelectorAll('.machine-tab')) {
@@ -7075,7 +6739,6 @@ are connected to the browser display, controls and audio synthesizer.</pre>
       cancelBasicInput();
       basicOutput.value = '';
       debugLog.textContent = 'No decode yet.';
-      decoderDebugText = '';
       fileName.textContent = '';
 
       $('waveCaption').textContent = 'teal=level · blue=transitions · amber=leader/zoom';
