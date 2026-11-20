@@ -1,6 +1,5 @@
 # Dave Nutting Associates game-development lineage
 
-
 [Dave Nutting Associates (DNA)](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/) pioneered arcade and console game development, from *Gun Fight* and *Sea Wolf* to *Gorf* and *Wizard of Wor*.
 
 This game-development lineage includes [Action Graphics](https://www.mobygames.com/company/1149/action-graphics-inc/), Spectre Systems, Perkins Engineering, Ogdon Micro Design, Mammoth Micro Productions, [Incredible Technologies](https://amusement.itsgames.com/about/), and MacroMind, connected through developers, technology, and subsequent ventures.
@@ -16,7 +15,7 @@ This game-development lineage includes [Action Graphics](https://www.mobygames.c
 | **Tornado Baseball / Ball Park**<br>1976 · Arcade<br>**CPU:** Intel 8080 | Head-to-head baseball.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/)<br>**Programming:** [Tom McHugh](https://thehistoryofhowweplay.wordpress.com/2018/04/03/interview-tom-mchugh/) |
 | **280-ZZZAP**<br>1977 · Arcade<br>**CPU:** Intel 8080 | First-person driving and time trial.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/)<br>**Programming:** Jamie Fenton |
 | **Boot Hill**<br>1977 · Arcade<br>**CPU:** Intel 8080 | Western duel; Gun Fight follow-up.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/)<br>**Programming:** Alan McNeil |
-| **Checkmate**<br>1977 · Arcade<br>**CPU:** Intel 8080 | Competitive trail-survival maze game.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/)<br>**Programming:** Jamie Fenton |
+| **[Checkmate](https://github.com/astrocadester/checkmate)**<br>1977 · Arcade<br>**CPU:** Intel 8080 | Competitive trail-survival maze game.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/)<br>**Programming:** Jamie Fenton |
 | **[Desert Gun](https://github.com/astrocadester/desert-gun)**<br>1977 · Arcade<br>**CPU:** Intel 8080 | Mounted-gun target shooting.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/) |
 | **Double Play**<br>1977 · Arcade<br>**CPU:** Intel 8080 | Baseball sequel expanding the Tornado Baseball interpreter with additional commands and native callbacks.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/) |
 | **Extra Inning**<br>1978 · Arcade<br>**CPU:** Intel 8080 | Further baseball revision retaining much of Double Play’s 8080 interpreter and game-script structure.<br>**Company:** [DNA](https://www.mobygames.com/company/22555/dave-nutting-associates-inc/) |
